@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "Constructo/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/Constructo/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Constructo/$1"
+    }
+  ]
+}
