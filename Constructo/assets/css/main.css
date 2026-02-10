@@ -658,6 +658,42 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# WhatsApp Button
+--------------------------------------------------------------*/
+.whatsapp-float {
+  position: fixed;
+  right: 15px;
+  bottom: 70px;
+  z-index: 99999;
+  background-color: #25d366;
+  height: 44px;
+  padding: 0 14px 0 12px;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+  color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.whatsapp-float i {
+  font-size: 22px;
+  line-height: 0;
+}
+
+.whatsapp-float span {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+  color: #ffffff;
+}
+
+/*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
