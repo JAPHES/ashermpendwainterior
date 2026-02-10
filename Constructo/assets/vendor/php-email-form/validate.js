@@ -26,6 +26,7 @@
       thisForm.querySelector('.sent-message').classList.remove('d-block');
 
       let formData = new FormData( thisForm );
+      let formBody = new URLSearchParams(formData);
 
       if ( recaptcha ) {
         if(typeof grecaptcha !== "undefined" ) {
@@ -34,7 +35,7 @@
               grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
               .then(token => {
                 formData.set('recaptcha-response', token);
-                php_email_form_submit(thisForm, action, formData);
+                php_email_form_submit(thisForm, action, formBody);
               })
             } catch(error) {
               displayError(thisForm, error);
@@ -44,16 +45,19 @@
           displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
         }
       } else {
-        php_email_form_submit(thisForm, action, formData);
+        php_email_form_submit(thisForm, action, formBody);
       }
     });
   });
 
-  function php_email_form_submit(thisForm, action, formData) {
+  function php_email_form_submit(thisForm, action, formBody) {
     fetch(action, {
       method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      body: formBody,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     })
     .then(response => {
       if( response.ok ) {
